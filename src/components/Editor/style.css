@@ -1,0 +1,106 @@
+.note-editor.note-frame .note-editing-area .note-editable {
+  word-wrap: break-word;
+}
+
+/*编辑器边框，toolbard的边框*/
+.note-editor.note-frame {
+  border: none;
+}
+.note-toolbar {
+  border-bottom: 1px solid #e8e8e8;
+  background-color: #fff;
+}
+
+/*调整toolbar高度, 按钮大小*/
+.card-header.note-toolbar {
+  padding: 8px 0;
+}
+.note-toolbar-wrapper {
+  height: 56px !important;
+}
+.note-btn {
+  padding: 0.5rem 0.8rem;
+}
+.card-header.note-toolbar .note-color.note-color .dropdown-toggle {
+  width: auto;
+  padding-left: 0.5rem;
+}
+
+/*正文编辑时图片宽度限制*/
+.note-editor img,
+.note-editor iframe {
+  width: 500px;
+  display: block;
+  margin: auto;
+}
+
+/*.article-content影响预览样式*/
+
+/*正文代码块样式*/
+.note-editor pre,
+.article-content pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+/*正文引用 样式*/
+.note-editor blockquote,
+.article-content blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: Hoefler Text, Georgia, serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+.note-editor,
+.article-content {
+  font-size: 14px;
+  line-height: 1.428;
+}
+.note-editor p,
+.article-content p {
+  margin: auto;
+  margin-bottom: 18px;
+}
+.article-content {
+  word-wrap: break-word;
+}
+.article-content img {
+  max-width: 100%;
+}
+.article-content iframe {
+  width: 100%;
+}
+
+/* 图片 */
+.img-container {
+  margin: auto;
+}
+
+.img-container.note-float-left {
+  margin-right: 10px;
+}
+
+.img-container.note-float-right {
+  margin-left: 10px;
+}
+
+.img-footnote {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+}
+
+/* note-color */
+.note-color .dropdown-menu {
+  min-width: unset !important;
+}

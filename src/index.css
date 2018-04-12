@@ -1,0 +1,35 @@
+/* reset general styles */
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: unset !important;
+  margin: 0;
+}
+
+/* box-sizing */
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+.icon-pointer:hover{
+  cursor: pointer;
+}
+.ant-table-thead>tr>th{
+  text-align: center!important;
+}
+.ant-table-row-expand-icon{
+  display: none!important;
+}
