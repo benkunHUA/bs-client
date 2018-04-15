@@ -5,13 +5,13 @@ import agent from '../agent';
 
 class InfoStore {
   @observable infoList = [];
-  
+
   @action
   loadInfo(){
     axios.get(`${API_URL}info/getInfoList`)
     .then(res => {
       res.data.resContent.map(item => {
-        item.ALBUM = JSON.parse(item.ALBUM);
+        item.ALBUMLIST = JSON.parse(item.ALBUMLIST);
       });
       this.setInfoList(res.data.resContent);
     })

@@ -76,7 +76,7 @@ class Messages extends React.Component {
           <p>{message.TITLE}</p>
           <p>{message.SUMMARY}</p>
           <div onClick={(e,albums) => this.previewImg(e,message.ALBUM)}>
-            {message.ALBUM.map(album => {
+            {message.ALBUMLIST.map(album => {
               return (<InfoImg src={album} />)
             })}
           </div>
@@ -91,7 +91,7 @@ class Messages extends React.Component {
          footer={[]}
        >
          <Carousel effect="fade">
-           {message.ALBUM.map(album => {
+           {message.ALBUMLIST.map(album => {
              return (<InfoImg src={album} />)
            })}
           </Carousel>

@@ -8,6 +8,10 @@ class albumStore {
   @observable albumTitle = '';
   @observable albumSummary = '';
   @observable albumList = [];
+  @observable albumId = 0;
+  @observable multipleProgress = 0;
+  @observable uploadList = [];
+  @observable isShare = false;
 
   @action
   loadAlbums(){
@@ -54,6 +58,32 @@ class albumStore {
   }
 
   @action
+  setAlbumId(albumId){
+    this.albumId = albumId;
+  }
+
+  @action
+  addMultipleProgress(){
+    this.multipleProgress++;
+  }
+
+  @action
+  resetMultipleProgress(){
+    this.multipleProgress = 0;
+    this.uploadList = [];
+  }
+
+  @action
+  addUploadList(uploadList){
+    this.uploadList.push(uploadList);
+  }
+
+  @action
+  setIsShare(isShare){
+    this.isShare = isShare;
+  }
+
+  @action
   handleCreate = () =>{
     axios({
       method: 'post',
@@ -73,8 +103,32 @@ class albumStore {
   }
 
   @action
+  uploadAlbumPic = () =>{
+    axios({
+      method: 'post',
+      url:`${API_URL}album/uploadAlbumPic`,
+      headers: {
+        'Content-Type':'application/x-www-form-urlencoded'
+      },
+      data: JSON.stringify({
+        userId: window.localStorage.getItem('token'),
+        albumId: this.albumId,
+        uploadList: this.uploadList,
+        isShare: this.isShare
+      })
+    }).then((res)=>{
+      console.log(res);
+    })
+  }
+
+  @action
   handleCancel = () => {
     this.setCreateShow(false);
+  }
+
+  @action
+  closeUpload = () => {
+    this.setUploadShow(false);
   }
 
 }
