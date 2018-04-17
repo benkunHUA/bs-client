@@ -27,9 +27,19 @@ const StyledAvatar = styled(Avatar)`
   margin-right: 0.8em !important;
 `;
 
+const HeadBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  span{
+    color: #666;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+`;
+
 const HeadAvatar = styled(Avatar)`
-  width: 64px;
-  height: 64px;
+  width: 48px!important;
+  height: 48px!important;
 `;
 
 const InfoContainer = styled.div`
@@ -44,15 +54,17 @@ const DropdownTrigger = styled.div`
   user-select: none;
 `;
 
-@inject('userStore', 'authStore')
+@inject('userStore', 'authStore', 'commonStore')
 @withRouter
 @observer
 class Header extends React.Component {
   handleClickLogout = () => {
-    this.props.authStore.logout().then(() => this.props.history.replace('/'));
+    this.props.authStore.logout();
   };
 
   render() {
+    const {commonStore} = this.props;
+    console.log(commonStore.headImg);
     const menu = (
       <Menu>
         <Menu.Item key="0">
@@ -65,7 +77,11 @@ class Header extends React.Component {
 
     return (
       <Container>
-        <HeadAvatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+        <HeadBox>
+          <HeadAvatar src={window.localStorage.getItem('headImg')} />
+          <span>{window.localStorage.getItem('nickname')}</span>
+        </HeadBox>
+
         <InfoContainer>
           <StyledAvatar size="small" icon="user" />
           <Dropdown overlay={menu} trigger={['click']}>

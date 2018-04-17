@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import axios from 'axios';
+import { message } from 'antd';
 import {API_URL,token} from '../constant';
 
 class albumStore {
@@ -15,7 +16,7 @@ class albumStore {
 
   @action
   loadAlbums(){
-    axios.get(`${API_URL}album/getAlbumList?token=${token}`)
+    axios.get(`${API_URL}album/getAlbumList?token=${window.localStorage.getItem('token')}`)
     .then(res => {
       res.data.resContent.map(item => {
         if(null != item.ALBUMLIST){
@@ -97,6 +98,8 @@ class albumStore {
         summary: this.albumSummary,
       }
     }).then((res)=>{
+      this.resetMultipleProgress();
+      message.success('创建成功')
       this.setCreateShow(false);
       this.loadAlbums();
     })
@@ -117,7 +120,9 @@ class albumStore {
         isShare: this.isShare
       })
     }).then((res)=>{
-      console.log(res);
+      message.success('上传成功')
+      this.setUploadShow(false);
+      this.loadAlbums();
     })
   }
 

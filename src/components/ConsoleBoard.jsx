@@ -7,11 +7,16 @@ import Header from './Header';
 import ArticleEditor from './ArticleEditor';
 import ConsoleNav from './ConsoleNav';
 
+import bgtop from '../assets/bg_top.jpg';
+
 class Console extends React.Component {
   render() {
     const Container = styled.div`
       width: 75%;
       margin: 0 auto;
+      background-image: url(${bgtop});
+      background-size: 100%;
+      background-repeat: no-repeat;
     `;
 
     return (

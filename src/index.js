@@ -21,6 +21,7 @@ import editorStore from './stores/editorStore';
 import articlesAutoStore from './stores/articlesAutoStore';
 import infoStore from './stores/infoStore';
 import albumStore from './stores/albumStore';
+import videoStore from './stores/videoStore';
 
 const stores = {
   authStore,
@@ -32,6 +33,7 @@ const stores = {
   articlesAutoStore,
   infoStore,
   albumStore,
+  videoStore,
 };
 
 // For easier debugging

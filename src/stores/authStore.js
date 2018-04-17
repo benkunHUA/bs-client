@@ -43,8 +43,9 @@ class AuthStore {
     this.setProgress(true);
     axios.get(`${API_URL}login?email=${this.values.email}&password=${this.values.password}`)
     .then(res => {
-      commonStore.setToken(res.data.resContent.USERID);
-      commonStore.setNickname(res.data.resContent.NICKNAME);
+      window.localStorage.setItem('token',res.data.resContent.USERID);
+      window.localStorage.setItem('nickname',res.data.resContent.NICKNAME);
+      window.localStorage.setItem('headImg',res.data.resContent.HEADIMG);
       window.location.href="message";
     })
     .catch(error => {
@@ -57,9 +58,8 @@ class AuthStore {
 
   @action
   logout() {
-    commonStore.setToken(undefined);
-    userStore.forgetUser();
-    return Promise.resolve();
+    localStorage.removeItem('token');
+    window.location.href = 'login';
   }
 }
 

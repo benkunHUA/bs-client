@@ -5,6 +5,7 @@ const key = 'token';
 class CommonStore {
   @observable token;
   @observable nickname = '';
+  @observable headImg = '';
 
   @action
   setToken(token) {
@@ -15,6 +16,11 @@ class CommonStore {
   @action
   setNickname(nickname) {
     this.nickname = nickname;
+  }
+
+  @action
+  setHeadImg(headImg) {
+    this.headImg = headImg;
   }
 
   @action

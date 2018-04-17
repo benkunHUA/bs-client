@@ -4,6 +4,7 @@ import { Upload, Icon, Modal } from 'antd';
 import styled from 'styled-components';
 
 import MessageItem from './messageItem';
+import MessageVideo from './messageVideo';
 
 const HeaderDiv = styled.div`
   position: relative;
@@ -49,7 +50,11 @@ class Messages extends React.Component {
     return (
       <div>
         {infoStore.infoList.map(info => {
-          return (<MessageItem message={info} key={info.INFOID}/>)
+          if('undefined' !== info.SUMMARY){
+            return (<MessageItem message={info} key={info.INFOID}/>)
+          }else{
+            return (<MessageVideo message={info} key={info.INFOID}/>)
+          }
         })}
       </div>
     );

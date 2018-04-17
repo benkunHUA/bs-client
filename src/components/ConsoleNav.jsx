@@ -5,6 +5,7 @@ import { Menu, Icon, Button } from 'antd';
 
 import Messages from './message/message';
 import Album from './Album/Album';
+import Video from './video/video';
 
 const SubMenu = Menu.SubMenu;
 
@@ -73,13 +74,14 @@ class ConsoleMain extends React.Component {
           </Menu.Item>
           <Menu.Item key="video">
 
-            <Link to="/message"><Icon type="youtube" />视频</Link>
+            <Link to="/video"><Icon type="youtube" />视频</Link>
           </Menu.Item>
         </Menu>
       </Sidebar>
         <Main>
           <Route exact path="/message" component={Messages} />
           <Route path="/album" component={Album} />
+          <Route path="/video" component={Video} />
         </Main>
       </Container>
     );

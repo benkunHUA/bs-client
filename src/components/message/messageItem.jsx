@@ -17,8 +17,10 @@ const PersonInfoDiv = styled.div`
 `;
 
 const InfoDiv = styled.div`
+  position: relative;
   display: flex;
   padding: 10px;
+  padding-bottom: 30px;
   margin-bottom: 15px;
   border-bottom: 1px solid #e4e4e4;
 `;
@@ -33,7 +35,28 @@ const InfoImg = styled.img`
   width: 120px;
   height: 120px;
   margin-right: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
+`;
+const PreviewModal = styled(Modal)`
+  width: 50%!important;
+  .ant-modal-header,
+  .ant-modal-body,
+  .ant-modal-footer{
+    padding: 0!important;
+  }
+`;
+const PreviewImg = styled.img`
+  width: 100%;
+`;
+
+const TimeBox = styled.span`
+  position:absolute;
+  right: 10px;
+  bottom: 5px;
+  color: #666;
+  font-size: 14px;
+  float: right;
 `;
 
 @inject('infoStore')
@@ -62,40 +85,39 @@ class Messages extends React.Component {
     });
   }
 
-  previewImg = (e,albums) => {
+  previewImg = (e,album) => {
+    this.props.infoStore.setCurrentPreview(album);
     this.setState({
       visible: true,
     });
   }
+
   render() {
     const {message} = this.props;
+    var list = message.ALBUMLIST;
     return (<div>
       <InfoDiv>
-        <HeadImg src="http://127.0.0.1:5000/uploads/head02.jpg" />
+        <HeadImg src={message.HEADIMG} />
         <div>
           <p>{message.TITLE}</p>
           <p>{message.SUMMARY}</p>
-          <div onClick={(e,albums) => this.previewImg(e,message.ALBUM)}>
-            {message.ALBUMLIST.map(album => {
-              return (<InfoImg src={album} />)
+          <div>
+            {list.map((album,index) => {
+              return (<InfoImg key={index} src={album} onClick={(e,index) => this.previewImg(e,album)}/>)
             })}
           </div>
         </div>
+        <TimeBox>{message.TIME}</TimeBox>
       </InfoDiv>
-      <Modal
-         title="预览"
+      <PreviewModal
          visible={this.state.visible}
          onOk={this.handleOk}
          onCancel={this.handleCancel}
          destroyOnClose="true"
          footer={[]}
        >
-         <Carousel effect="fade">
-           {message.ALBUMLIST.map(album => {
-             return (<InfoImg src={album} />)
-           })}
-          </Carousel>
-       </Modal>
+         <PreviewImg src={this.props.infoStore.currentPreview} />
+       </PreviewModal>
     </div>);
   }
 }

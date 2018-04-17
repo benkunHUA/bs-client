@@ -10,6 +10,9 @@ const AlbumCard = styled.div`
   margin-left: 20px;
   margin-bottom: 20px;
   padding-bottom: 15px;
+  :hover{
+    box-shadow: 2px 2px 2px #999;
+  }
 `;
 
 const ImgBox = styled.div`
@@ -44,7 +47,14 @@ const InfoBox = styled.div`
   	-webkit-line-clamp:2;
   }
 `;
-
+const PreviewModal = styled(Modal)`
+  width: 50%!important;
+  .ant-modal-header,
+  .ant-modal-body,
+  .ant-modal-footer{
+    padding: 0!important;
+  }
+`;
 const PreviewImg = styled.img`
   display:block;
   width: 240px;
@@ -94,8 +104,7 @@ class AlbumItem extends React.Component {
           <span>{album.SUMMARY}</span>
         </InfoBox>
       </AlbumCard>
-      <Modal
-         title="预览"
+      <PreviewModal
          visible={this.state.visible}
          onOk={this.handleOk}
          onCancel={this.handleCancel}
@@ -107,7 +116,7 @@ class AlbumItem extends React.Component {
              return (<img src={pic} />)
            })}
           </Carousel>
-       </Modal>
+       </PreviewModal>
     </div>);
   }
 }
